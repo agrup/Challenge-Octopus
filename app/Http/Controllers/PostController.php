@@ -21,7 +21,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::All();
+        $posts = Auth::user()->posts;
+        // $posts = Post::All();
         return view('Post.posts')->with(['posts'=>$posts]);
     }
 
