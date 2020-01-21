@@ -47,4 +47,8 @@ class User extends Authenticatable
         $this->posts()->save($post);
 
     }
+    public function publications()
+    {
+        return $this->hasmany('App\Publication','user_comment_id');
+    }
 }

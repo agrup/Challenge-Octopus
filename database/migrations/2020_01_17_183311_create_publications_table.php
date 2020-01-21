@@ -16,8 +16,10 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('post_id')->unsigned();
-            $table->text('body');
+            $table->text('publication');
+            $table->integer('user_id')->unsigned();
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

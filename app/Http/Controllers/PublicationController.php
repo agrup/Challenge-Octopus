@@ -1,12 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Publication;
 use Illuminate\Http\Request;
+use App\Post;
 
 class PublicationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['auth']);
+    }    
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +40,16 @@ class PublicationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $this->validate(request(),[
+            'publication' => 'required|min:2',
+        ]);
+        // dd(request(['publication']));
+        $post->addPublication(request('publication'),Auth::user()->id);
+
+
+        return back();
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Post extends Model
 {
 
@@ -22,4 +23,23 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function addPublication($publication,$user_id)
+    {
+        // $post=$this->id;
+        $this->publications()->create(compact('publication','user_id'));
+
+    }
+
+    public function publicationsUserName()
+    {
+        $publications = $this->publications;
+        
+        // foreach ($Publications as $publication) {
+            
+        // }
+        return $publications;
+    }
+
+
 }

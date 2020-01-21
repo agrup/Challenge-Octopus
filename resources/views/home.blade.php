@@ -13,7 +13,8 @@
                     </div>
                     <div class="col-md-8 ">
                         <div class="card-body">
-                        <h5 class="card-title">{{$post->title}}</h5>
+                            <a class="card-title" href="{{url('post/'.$post->id)}}">{{$post->title}}</a>
+                            {{-- <h5 class="card-title">{{$post->title}}</h5> --}}
                         <p class="card-text">{{$post->body}}</p>
                         {{-- <p class="card-text"><small class="text-muted">Ultima Actualizacion {{$post->updated_at}}</small></p> --}}
                         <p class="card-text"><small class="text-muted">Autor {{$post->user()->first()->name}}</small></p>

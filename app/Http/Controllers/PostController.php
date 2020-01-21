@@ -68,7 +68,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $publications = $post->publicationsUserName();
+
+        // dd($publications);
+        return view('Post.show')->with(['post'=>$post,'publications'=>$publications]);
     }
 
     /**
@@ -79,7 +82,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('Post.edit')->with(['post'=>$post]);
     }
 
     /**
@@ -91,7 +94,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->validate(request(),[
+            'title' => 'required',
+            'body'=>'required',
+        ]);
+        
+        
+        $post->title=$request->title;
+        $post->body=$request->body;
+        $post->update();
+        
+        return redirect('/');
+        
     }
 
     /**
@@ -102,6 +116,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        
+        if(Auth::user()->posts()->get()->contains($post))
+        {
+            $post->delete();
+            
+        }
+        return redirect('/');
+ 
     }
 }

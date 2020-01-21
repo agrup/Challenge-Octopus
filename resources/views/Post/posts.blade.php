@@ -13,9 +13,22 @@
                     </div>
                     <div class="col-md-8 ">
                         <div class="card-body">
-                        <h5 class="card-title">{{$post->title}}</h5>
-                        <p class="card-text">{{$post->body}}</p>
-                        <p class="card-text"><small class="text-muted">Ultima Actualizacion {{$post->updated_at}}</small></p>
+                        <a class="card-title" href="{{url('post/'.$post->id)}}">{{$post->title}}</a>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <form action="{{url('posts', [$post->id])}}" method="POST">
+                                
+                                    <input class="btn btn-danger" type="submit" value="Borrar" />
+                                
+                                    @method('DELETE')
+                                @csrf
+                            </form>
+                                <a class="btn btn-primary" href={{url('/posts').'/'.$post->id.'/edit'}}>Editar</a>
+                            </small>
+                        </p>
+                            
+                            {{-- <a href={{url('/posts').'/'.$post->id.'/delete'}}>Borrar</a> --}}
+                            
                         </div>
                     </div>
                     </div>
