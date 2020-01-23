@@ -21,5 +21,13 @@ Route::get('/post/{post}', 'PostController@show');
 Route::delete('/posts/{post}', 'PostController@destroy');
 Route::get('/posts/{post}/edit', 'PostController@edit');
 Route::put('/posts/{post}/update', 'PostController@update');
-
 Route::post('/posts/{post}/publication', 'PublicationController@store');
+Route::get('/posts/{post}/like', 'PostController@like');
+
+
+// Route::get('/test', 'PostController@test');
+Route::post('/posts/{post}/like', 'LikeController@store');
+Route::get('/posts/{post}/like', 'LikeController@index');
+
+
+

@@ -17,7 +17,7 @@ class Publication extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo('App\User');
     }    
 
     public function getUser($id)

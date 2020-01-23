@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Storage;
 use App\Post;
+use App\Like;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -69,9 +70,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $publications = $post->publicationsUserName();
+        $likes = count($post->likes);
 
         // dd($publications);
-        return view('Post.show')->with(['post'=>$post,'publications'=>$publications]);
+        return view('Post.show')->with(['post'=>$post,'publications'=>$publications,'likes'=>$likes]);
     }
 
     /**
@@ -125,4 +127,17 @@ class PostController extends Controller
         return redirect('/');
  
     }
+
+    public function test(Post $post)
+    {
+       return view('vue');
+    }
+
+    public function testlike(Post $post)
+    {
+       return [
+           'likesvalue'=> $this->like($post)+1,
+       ];
+    }
+    
 }

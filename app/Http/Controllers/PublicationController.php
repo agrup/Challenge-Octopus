@@ -47,8 +47,6 @@ class PublicationController extends Controller
         ]);
         // dd(request(['publication']));
         $post->addPublication(request('publication'),Auth::user()->id);
-
-
         return back();
     }
 

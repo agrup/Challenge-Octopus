@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Like;
+use App\Post;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -12,9 +14,13 @@ class LikeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        //
+
+        $likesvalue = count($post->likes);
+        return [
+            'likesvalue' => $likesvalue
+        ];
     }
 
     /**
@@ -33,9 +39,21 @@ class LikeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Post $post)
     {
-        //
+        $user_id = Auth::user()->id;
+        $likesUser=false;
+        $likesUser = $post->likes->where('user_id',$user_id)->first();
+        if ($likesUser) {
+            $post->dellLike($user_id);
+        } else {
+            $post->addLike($user_id);
+        }
+
+        $likesvalue = count($post->likes()->get());
+        return [
+            'likesvalue' => $likesvalue
+        ];
     }
 
     /**
@@ -46,7 +64,7 @@ class LikeController extends Controller
      */
     public function show(Like $like)
     {
-        //
+
     }
 
     /**
