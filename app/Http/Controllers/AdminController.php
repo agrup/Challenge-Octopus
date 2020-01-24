@@ -5,17 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -26,6 +20,6 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('home')->with(['posts'=>$posts]);
+        return view('Admin.home')->with(['posts'=>$posts]);
     }
 }

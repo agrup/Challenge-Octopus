@@ -29,5 +29,6 @@ Route::get('/posts/{post}/like', 'PostController@like');
 Route::post('/posts/{post}/like', 'LikeController@store');
 Route::get('/posts/{post}/like', 'LikeController@index');
 
+Route::get('/admin', 'AdminController@index')->middleware('checkRoles:AdminRole');
 
 

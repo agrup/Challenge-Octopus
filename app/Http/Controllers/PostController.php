@@ -101,11 +101,13 @@ class PostController extends Controller
             'body'=>'required',
         ]);
         
-        
+                
+        if(Auth::user()->posts()->get()->contains($post))
+        {
         $post->title=$request->title;
         $post->body=$request->body;
         $post->update();
-        
+    }
         return redirect('/');
         
     }
@@ -119,7 +121,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         
-        if(Auth::user()->posts()->get()->contains($post))
+        if(Auth::user()->posts()->get()->contains($post)| Auth::user()->isAdmin())
         {
             $post->delete();
             

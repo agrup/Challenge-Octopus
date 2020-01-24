@@ -28,6 +28,13 @@
                         </li>
                     @endif
                 @else
+
+                    @if(Auth::user()->hasRole('AdminRole'))
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">Admin</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="/posts/create">Nuevo Post</a>
                     </li>

@@ -8,7 +8,10 @@ use Faker\Generator as Faker;
 $factory->define(Post::class, function (Faker $faker) {
     return [
         'title'=> $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'contenido'=> $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'user_id'=> int_random(2),
+        'body'=> $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'user_id'=> function (){
+            return factory(App\User::class)->create()->id;
+        },
+        'filename'=>'img-1.jpg'
     ];
 });

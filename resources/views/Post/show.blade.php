@@ -13,10 +13,22 @@
         
         <p >{{$post->body}}</p>
     </div>    
-    <div id="app">
-    <like-component post="{{$post->id}}"></like-component>
+    <div id="app" class="btn-toolbar justify-content-between">
+    <div class="btn-group">
+        <like-component post="{{$post->id}}"></like-component>
     </div>
-
+    @if(Auth::user()->hasRole('AdminRole'))
+        <div class="btn-group">
+            <form action="{{url('posts', [$post->id])}}" method="POST">
+            
+                <input class="btn btn-danger" type="submit" value="Rechazar" />
+            
+                @method('DELETE')
+                @csrf
+            </form>
+        </div>
+    @endif
+    </div>
     <hr>
     <div class="form-group">
     
@@ -53,7 +65,7 @@
 
 </div>
 
-<script>
+{{-- <script>
 
     const app = new Vue({
         el: '#app',
@@ -62,5 +74,5 @@
         }
     });
 
-</script>
+</script> --}}
 @endsection
