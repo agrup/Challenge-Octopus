@@ -170,3 +170,11 @@ reiniciar apache
 ```
 sudo service apache2 restart
 ```
+Acceder octopus.blog
+
+## Usuarios
+Se genero un usuario administrador 
+
+* usuario: admin@admin.com
+
+* contraseña: 4Dm1n
