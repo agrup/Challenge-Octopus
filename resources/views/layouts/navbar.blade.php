@@ -29,7 +29,7 @@
                     @endif
                 @else
 
-                    @if(Auth::user()->hasRole('AdminRole'))
+                    @if(Auth::user()->isAdmin())
                     
                         <li class="nav-item">
                             <a class="nav-link" href="/admin">Admin</a>

@@ -18,6 +18,8 @@
                         <p class="card-text">{{$post->body}}</p>
                         {{-- <p class="card-text"><small class="text-muted">Ultima Actualizacion {{$post->updated_at}}</small></p> --}}
                         <p class="card-text"><small class="text-muted">Autor {{$post->user()->first()->name}}</small></p>
+                        <p class="card-text"><small class="text-muted">Creado {{Carbon\Carbon::parse($post->created_at)->format('d-m-Y')}}</small></p>
+
                     </div>
                     </div>
                     </div>

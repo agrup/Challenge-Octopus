@@ -13,11 +13,15 @@
         
         <p >{{$post->body}}</p>
     </div>    
+    <p class="card-text"><small class="text-muted">Creado {{Carbon\Carbon::parse($post->created_at)->format('d-m-Y')}}</small></p>
+
     <div id="app" class="btn-toolbar justify-content-between">
+
     <div class="btn-group">
+
         <like-component post="{{$post->id}}"></like-component>
     </div>
-    @if(Auth::user()->hasRole('AdminRole'))
+    @if(Auth::user()->isAdmin())
         <div class="btn-group">
             <form action="{{url('posts', [$post->id])}}" method="POST">
             
@@ -42,6 +46,7 @@
           </div>
  
       </form>
+
     </div>
 
     <div class="form-group">
